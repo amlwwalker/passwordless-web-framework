@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Account</title>  
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+        <% include partials/header %>
+    </header>
+    <section class="panel">
+  <div class="row">
+    <section class="large-8 large-centered columns">
+	<h2 class="first">Your account
+	  <p>
+	    Here you can edit your account. Does it make much sense? No. Does it demonstrate how
+	    your account page could work with Passwordless? Hopefully!
+	  </p>
+	</h2>
+	    <%if (locals.error) { %>
+          <div data-alert="data-alert" class="alert-box alert"><%= locals.error  %><a href="#" class="close"></a>&times;</div>
+        <%} if (locals.success) { %>
+          <div data-alert="data-alert" class="alert-box success"><%= locals.success %><a href="#" class="close">&times;</a></div>
+        <% } %>
+		<form action="/users/edit" method="POST">
+	    <label for="email">Email</label>
+
+			<!-- <div data-alert="data-alert" class="alert-box alert"><%= locals.user.username%><a href="#" class="close">&times;</a></div> -->
+		<input id="email" name="user" type="email" value="<%= locals.user.email %>"placeholder="email@example.com"/>
+  		<label for="email">Username</label>
+		<input id="username" name="username" type="text" value="<%= locals.user.username %>"placeholder="Username"/>
+		<label for="email">Avatar</label>
+		<select id="color" name="color">
+			<option>Gravatar</option>
+			<option>Mystery man</option>
+			<option>Identicon</option>
+			<option>Monster</option>
+			<option>Wavatar</option>
+			<option>Retro</option>
+			<option>None</option>
+		</select>
+		<div class="row">
+		  <div class="large-6 column">
+		    <input type="submit" value="Save" class="button small"/>
+		  </div>
+		  <div class="large-6 column"><a href="/users/delete" class="button small alert">Delete your account</a></div>
+		</div>
+		</form>
+    </section>
+  </div>
+</section>
+<section class="row">
+  <div class="large-8 large-centered columns"></div>
+</section>
+<% include partials/footer %>	

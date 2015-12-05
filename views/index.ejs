@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>  
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+        <% include partials/header %>
+    </header>
+    <section class="row">
+  <div class="row">
+    <section class="large-8 large-centered columns">
+        <%if (locals.error) { %>
+          <div data-alert="data-alert" class="alert-box alert"><%= locals.error  %><a href="#" class="close">&times;</a></div>
+        <%} if (locals.success) { %>
+          <div data-alert="data-alert" class="alert-box success"><%= locals.success %><a href="#" class="close">&times;</a></div>
+        <% } %>
+        <h1 class="text-center first">User Platform</h1>
+        <h3 class="subheader text-center">A framework to build user accounts</h3>
+        <p>
+          <ul>
+            <li>From here you can build an interface on top</li>
+            <li>User login handled</li>
+            <li>User management handled</li>
+            <li>User interaction not yet implemented</li>
+          </ul>
+        </p>
+        <p class="text-center"><a href="/account/login" class="button small info">Login / Create an account</a></p>
+    </section>
+  </div>
+</section>
+<section class="row">
+  <div class="large-8 large-centered columns"></div>
+</section>
+<% include partials/footer %>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>  
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+        <% include partials/header %>
+    </header>
+<section class="row">
+  <section class="large-8 large-centered columns">
+    <%if (error) { %>
+    <div data-alert="data-alert" class="alert-box alert"><a href="#" class="close">&times;dzfsdfsdfsds</a></div>
+    <%} if (success) { %>
+    <div data-alert="data-alert" class="alert-box success"><a href="#" class="close">sadfadfsdf&times;</a></div>
+    <% } %>
+
+    <h2 class="first">Registration and login</h2>
+    <form action="/account/sendtoken" method="POST">
+      <p>Whether your a new face or a you're coming back, just enter your email here, and go to your inbox!</p>
+      <label for="email">Email</label>
+      <input id="email" name="user" type="email" placeholder="email@example.com" maxlength="200" minlength="1" value=""/>
+      <input type="submit" value="Login or Register" class="button small"/>
+    </form>
+  </section>
+</section>
+<% include partials/footer %>

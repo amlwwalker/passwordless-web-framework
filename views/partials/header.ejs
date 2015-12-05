@@ -1,0 +1,30 @@
+<span>
+  <nav data-topbar="data-topbar" class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/">Framework</a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="left">
+        <li><a href="/explanation">Explanation</a></li>
+        <li><a href="/templates">Templates</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+
+      <ul class="right">
+        <%if (locals.user) { %>
+          <li>
+            <a href="/users/edit">GRAVATAR
+              <img src="https://www.gravatar.com/avatar/1976d11ab4c67b87dbc50d120e11bd4b?d=retro&amp;s=43">
+            </a>
+          </li>
+          <li><a href="/users/edit"><%= locals.user.username || locals.user.email%></a></li>
+          <li><a href="/account/logout">Logout</a></li>
+        <% } else{ %>
+          <li><a href="/account/login">login</a></li>
+        <% } %>
+      </ul>
+    </section>
+  </nav></span>

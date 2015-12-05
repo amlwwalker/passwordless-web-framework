@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+// var favicon = require('serve-favicon');
 var logger = require('morgan');
 //var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -10,6 +10,7 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var enforce = require('express-sslify');
 
+//contains setup and configuration
 var config = require('./config');
 var passwordless = require('./controller/passwordless');
 
@@ -27,7 +28,7 @@ if(config.http.enforce_ssl) {
     app.use(enforce.HTTPS(config.http.trust_proxy));
 }
 
-favicon(__dirname + '/public/favicon.ico');
+// favicon(__dirname + '/public/favicon/favicon.ico');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -39,15 +40,6 @@ app.use(expressValidator({
     },
  }
 }));
-
-
-// Google Analytics
-if(config.ga.id && config.ga.domain) {
-    app.use(function(req, res, next) {
-        res.locals.ga = config.ga;
-        next();
-    });
-}
 
 //app.use(cookieParser(config.http.cookie_secret));
 app.use(session({   secret: config.http.cookie_secret,

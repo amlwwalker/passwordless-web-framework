@@ -11,6 +11,9 @@ router.get('/edit', function(req, res) {
 	res.render('account', { validation: req.flash('validation')[0], error: req.flash('error')[0] });
 });
 
+router.get('/restricted', function(req, res) {
+	res.render('restricted', { validation: req.flash('validation')[0], error: req.flash('error')[0] });
+});
 /* GET delete account. */
 router.get('/delete', function(req, res, next) {
 	User.deleteUser(res.locals.user.email, function(error) {

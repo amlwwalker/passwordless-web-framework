@@ -9,17 +9,18 @@ var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill(config.mandrill.api_key);
 
 var emailText = function(html, token, uid) {
-	var startP = function() { return (html) ? '<p>' : ''; }
-	var endP = function() { return (html) ? '</p>' : '\n\n'; }
-	var linkA = function(url) { return (html) ? ('<a href="' + url + '">' + url + '</a>') : url; }
-	return startP() + 'Hello!' + endP() + 
-					startP() + 'You have successfully set up your Passwordless account and you can now access ' +
-					'it by clicking on the following link:' + endP() + 
-					startP() + linkA(config.http.host_url + '/?token=' + encodeURIComponent(token) 
-					+ '&uid=' + encodeURIComponent(uid)) + endP() + 
-					startP() + 'See you soon!' + endP() + 
-					startP() + 'Your Passwordless Team' + endP();
-};
+	var email;
+	var linkA = function(url) { return (html) ? ('<a href="' + url + '">' + url + '</a>') : url; }		
+	
+	if (html) {
+		email = "<h3>Hi</h3>, someone using this email requested a login token for the framework.<br/>You can access it by going to this link: " + linkA(config.http.host_url + '/?token=' + encodeURIComponent(token) 
+					+ '&uid=' + encodeURIComponent(uid)) + " See you there!"
+	} else {
+		email = "Hi, someone using this email requested a login token for the framework.\r\nYou can access it by going to this link: " + linkA(config.http.host_url + '/?token=' + encodeURIComponent(token) 
+					+ '&uid=' + encodeURIComponent(uid)) + " See you there!"
+	}
+	return email
+};			
 
 module.exports = function(app) {
 
@@ -35,7 +36,7 @@ module.exports = function(app) {
 			    "text": emailText(false, tokenToSend, uidToSend),
 			    "subject": config.mandrill.subject,
 			    "from_email": config.mandrill.from,
-			    "from_name": "Passwordless",
+			    "from_name": config.mandrill.fromname,
 			    "to": [{
 			            "email": recipient,
 			            "name": "",

@@ -11,6 +11,9 @@
         <li><a href="/explanation">Explanation</a></li>
         <li><a href="/templates">Templates</a></li>
         <li><a href="/about">About</a></li>
+        <%if (locals.user) { %>
+        <li><a href="/users/restricted">Restricted Area</a></li>
+        <% } %>
       </ul>
 
       <ul class="right">

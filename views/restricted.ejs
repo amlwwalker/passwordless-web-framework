@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restricted</title>  
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+        <% include partials/header %>
+    </header>
+
+<section class="row">
+  <div class="large-8 large-centered columns">
+    <h2 class="first">Hi <%= locals.user.username || locals.user.email %></h2>
+    <p>This is a restricted area. The contents is populated with information relevant to you. If you interact with elements on this page, they will be attributable to you</p>
+  </div>
+</section>
+<section class="row">
+  <div class="large-8 large-centered columns"></div>
+</section>
+    <script src="/min.js"></script>
+    <script>$(document).foundation();</script>
+<% include partials/footer %>
